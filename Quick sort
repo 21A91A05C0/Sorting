@@ -1,0 +1,31 @@
+//1) pick up the pivot element and palce it in a correct place ,it can be a starting element,ending element,middile element or any random element
+//2) palce smallest element on the left and greatest on the right
+    void quickSort(int arr[], int low, int high)
+    {
+        if(low<high)
+        {
+            int pivot=partition(arr,low,high);// finding the pivot element 
+            quickSort(arr,low,pivot-1);// spliting the array from starting to the pivotindex-1
+            quickSort(arr,pivot+1,high);// spliting the array from pivotindex+1 till the end end of the array
+        }  
+    } 
+    public:
+    int partition (int arr[], int low, int high)
+    {
+       int i=low;
+       int j=high;
+       while(i<j)  // till the i and j does not cross themselves
+       {
+           while(arr[i]<=arr[low] && i<=high) // find the largest element than the pivot 
+           {
+               i=i+1;
+           }
+           while(arr[j]>arr[low] && j>=low) // from the last find the smallest element than the pivot
+           {
+               j--;
+           }
+           if(i<j) swap(arr[i],arr[j]); // if the pivot is not yet placed in its position that is i<j then we will swap the largest and smallest element
+       }
+       swap(arr[low],arr[j]); // when crossing is done we can swap the low element and the jth element 
+       return j; // return the pivotindex 
+    }
